@@ -45,3 +45,27 @@ $email->send($customer);
 - Tham số cho hàm nhìn đơn giản, gọn gàng
 - Nếu hàm cần thêm dữ liệu từ đối tượng, sẽ không cần phải viết lại tất cả những nơi mà hàm được sử dụng,
 chỉ đơn giản sửa bên trong hàm đó.
+- Tên phản ánh những gì nó thực hiện giúp code dễ hiểu
+
+### Hide Method (required)
+
+#### Problem
+
+```php
+class Customer {
+  public function calculateLifetime() {}
+}
+```
+
+#### Solution
+
+```php
+class Customer {
+  private function calculateLifetime() {}
+}
+```
+
+#### Benefits
+
+- Tạo một giao diện công khai cho class, các đối tượng khác nên biết mình có thể làm gì với class hiện tại 
+- Khi thay đổi một phương thức private, chỉ cần để ý làm thế nào để không phá vỡ lớp hiện tại
