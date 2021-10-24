@@ -44,6 +44,9 @@ class Container
     public function resolve($concrete): object
     {
         $classReflection = new ReflectionClass($concrete);
+        if (!$classReflection->isInstantiable()) {
+            throw new Exception("Class {$concrete} is not instantiable");
+        }
 
         $constructor = $classReflection->getConstructor();
         if (is_null($constructor)) {
