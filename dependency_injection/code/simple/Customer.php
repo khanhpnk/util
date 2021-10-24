@@ -1,9 +1,14 @@
 <?php
 
-require_once('AbstractAccount.php');
 require_once('Setting.php');
 
-class Customer extends AbstractAccount {
+class Customer
+{
+    /**
+     * @var Setting
+     */
+    private Setting $setting;
+
     /**
      * @param Setting $setting
      */

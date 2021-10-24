@@ -34,12 +34,7 @@ class Container
     {
         $classReflection = new ReflectionClass($concrete);
 
-        $constructor = $classReflection->getConstructor();
-        if (is_null($constructor)) {
-            return $classReflection->newInstance();
-        }
-
-        $constructorParams   = $constructor->getParameters();
+        $constructorParams = $classReflection->getConstructor()->getParameters();
         $dependencies = $this->getDependencies($constructorParams);
 
         return $classReflection->newInstanceArgs($dependencies);
