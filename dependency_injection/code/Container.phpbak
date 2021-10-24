@@ -1,17 +1,6 @@
 <?php
 class Container
 {
-    /**
-     * @param      $abstract
-     * @param null $concrete
-     */
-    public function set($abstract, $concrete = NULL)
-    {
-        if ($concrete === NULL) {
-            $concrete = $abstract;
-        }
-        $this->instances[$abstract] = $concrete;
-    }
 
     /**
      * @param       $abstract

@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Components;
 
-class Setting
+class Setting implements SettingInterface
 {
     /**
      * @var string
