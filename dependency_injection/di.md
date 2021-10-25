@@ -1,7 +1,8 @@
 #### Dependency Injection (tiêm phụ thuộc)
 
-- Nếu class A sử dụng chức năng của class B, thì có nghĩa là class A (có quan hệ) phụ thuộc class B.
-- "Dependency Inversion Principle" is the D in the S.O.L.I.D "Depend on Abstractions. Do not depend on concretions."
+- When class A uses some functionality of class B, then it's said that class A has a dependency of class B.
+- Before we can use methods of other classes, we first need to create the object of that class (i.e. class A needs to create an instance of class B).
+- So, transferring the task of creating the object to someone else and directly using the dependency is called dependency injection.
 
 #### Problem
 
@@ -23,11 +24,7 @@ class Question {
 }
 ```
 
-- Thông tin name của Author được truyền qua construct của Question mặc dù nó ko làm bất cứ điều gì trong Question,
-- về mặt ý nghĩa nó cũng ko liên quan gì đến class Question
-- Nếu thêm một tham số mới vào constructor của class Author, phải sửa đổi mọi nơi chúng ta tạo một object Author
-
-#### Phân loại DI
+#### Types of Dependency Injection
 
 - Constructor Injection
 ```php
@@ -45,27 +42,16 @@ public function setCar(Car $car)
 }
 ```
 
-- Method Injection
 - Interface injection
 ```php
-interface Car{}
-
-class Ferrari implements Car {}
-
+interface CarInterface{}
 class Driver
 {
-  private $car;
-  public function __construct(Car $car)
+  public function __construct(CarInterface $car)
   {
       $this->car = $car;
   }
 }
 ```
 
-- We are not relying on Car as an object anymore, we now rely on its behavior.
-- Ferrari can be replaced by any other class as soon they implement the Car interface.
-- And now our application looks a bit like real life, in real life a driver can drive any car
-
 #### Inversion of Control (IoC) (Often called a Dependency Injection Container)
-
-- Lớp này sẽ lưu trữ đăng ký của tất cả các phụ thuộc cho dự án
