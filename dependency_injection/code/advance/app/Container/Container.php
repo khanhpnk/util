@@ -4,8 +4,9 @@ namespace App\Container;
 
 use Exception;
 use ReflectionClass;
+use Psr\Container\ContainerInterface;
 
-class Container
+class Container implements ContainerInterface
 {
     /**
      * @var array
@@ -13,12 +14,29 @@ class Container
     private array $instances = [];
 
     /**
-     * Đăng ký một class hay interface với Container
-     *
-     * @param $abstract
-     * @param null $concrete
+     * {@inheritdoc}
+     * @throws Exception
      */
-    public function bind($abstract, $concrete = NULL)
+    public function get(string $id)
+    {
+        return $this->make($id);
+    }
+
+    /**
+     *  {@inheritdoc}
+     */
+    public function has(string $id): bool
+    {
+        return isset($this->instances[$id]);
+    }
+
+    /**
+     * Register a class/interface with the container.
+     *
+     * @param string $abstract
+     * @param string|null $concrete
+     */
+    public function bind(string $abstract, string $concrete = NULL)
     {
         if (is_null($concrete)) {
             $concrete = $abstract;
@@ -27,21 +45,29 @@ class Container
     }
 
     /**
+     * Get instance from Container
+     *
+     * @param string $abstract
+     * @return object
      * @throws Exception
      */
-    public function make($concrete): object
+    public function make(string $abstract): object
     {
-        if (!isset($this->instances[$concrete])) {
-            $this->bind($concrete);
+        if (!$this->has($abstract)) {
+            $this->bind($abstract);
         }
 
-        return $this->resolve($this->instances[$concrete]);
+        return $this->resolve($this->instances[$abstract]);
     }
 
     /**
+     * Resolve the given type from the container.
+     *
+     * @param string $concrete
+     * @return object
      * @throws Exception
      */
-    public function resolve($concrete): object
+    public function resolve(string $concrete): object
     {
         $classReflection = new ReflectionClass($concrete);
         if (!$classReflection->isInstantiable()) {

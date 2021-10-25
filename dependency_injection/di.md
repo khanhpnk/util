@@ -9,10 +9,10 @@
 class Author {
   private $firstName;
   private $lastName;
-    public function __construct($firstName, $lastName) {
-      $this->firstName = $firstName;
-      $this->lastName = $lastName;
-    }
+  public function __construct($firstName, $lastName) {
+    $this->firstName = $firstName;
+    $this->lastName = $lastName;
+  }
 }
 
 class Question {
@@ -68,39 +68,4 @@ class Driver
 
 #### Inversion of Control (IoC) (Often called a Dependency Injection Container)
 
-- Lớp này sẽ lưu trữ một đăng ký của tất cả các phụ thuộc cho dự án
-
-```php
-class IoC {
-  public static function newCar()
-  {
-    $car = new Car;
-    $car->setDB('...');
-    return $car;
-  }
-}
-$car = IoC::newCar();
-```
-- Bằng cách này, người dùng không phải nhớ để thiết lập các phụ thuộc bằng tay; chỉ cần gọi phương thức newCar
-
-```php
-class IoC {
-  protected static $registry = array();
-  public static function register($name, Closure $resolve)
-  {
-    static::$registry[$name] = $resolve;
-  }
-  public static function resolve($name)
-  {
-        $name = static::$registry[$name];
-        return $name();
-  }
-}
-IoC::register('car', function() {
-  $car = new Car;
-  $car->setDB('...');
-  return $car;
-});
-$car = IoC::resolve('car');
-```
-- Thay vì tạo ra một phương pháp mới cho mỗi lớp học, là viết một thùng chứa registry chung
+- Lớp này sẽ lưu trữ đăng ký của tất cả các phụ thuộc cho dự án
