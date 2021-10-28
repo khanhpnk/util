@@ -3,9 +3,10 @@
 - When class A uses some functionality of class B, then it's said that class A has a dependency of class B.
 - Before we can use methods of other classes, we first need to create the object of that class (i.e. class A needs to create an instance of class B).
 - So, transferring the task of creating the object to someone else and directly using the dependency is called dependency injection.
+- It is the fifth principle of S.O.L.I.D — which states that a class should depend on abstraction and not upon concretions.
+- Depending on interfaces (or abstractions) rather than on concrete classes is called dependency inversion principle and is used to write less coupled code.
 - Dependency Injection (DI) is a design pattern used to implement IoC (Inversion of control).
 - Dependencies injected at runtime rather than at compile time
-
 #### Problem
 
 ```php
@@ -55,8 +56,6 @@ class Driver
   }
 }
 ```
-
-- It is the fifth principle of S.O.L.I.D — which states that a class should depend on abstraction and not upon concretions.
 
 #### Advantages
 
