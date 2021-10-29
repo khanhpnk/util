@@ -1,0 +1,24 @@
+<?php /** @var \Cowell\ModuleA\Block\Post $block */?>
+
+<p>Welcome to M2</p>
+<table>
+    <thead>
+      <th>Name</th>
+      <th>Description</th>
+    </thead>
+    <tbody>
+    <?php foreach ($block->getCollection() as $post): ?>
+        <tr>
+            <td><?= $post->getName() ?></td>
+            <td><?= $post->getDescription() ?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<pre>
+<?php var_dump($block->getName()); ?>
+<?php $block->setName('This name form Block'); ?>
+<?php var_dump($block->getName()); ?>
+</pre>
+
