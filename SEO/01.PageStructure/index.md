@@ -1,6 +1,6 @@
 ## 01.Page Regions
 
-### Page header
+#### Page header
 ```html
 <header>
   <img src="/images/logo.png">
@@ -11,7 +11,7 @@
 - Nó không có vai trò biểu ngữ WAI-ARIA và không có hành vi đặc biệt trong các công nghệ hỗ trợ (assistive technologies).
 ```
 
-### Page footer
+#### Page footer
 ```html
 <footer>
   <p>&copy; 2014 SpaceBears Inc.</p>
@@ -22,7 +22,7 @@
 - Nó không có vai trò biểu ngữ WAI-ARIA và không có hành vi đặc biệt trong các công nghệ hỗ trợ (assistive technologies).
 ```
 
-### Navigation
+#### Navigation
 ```html
 <nav aria-label="Main Navigation">
 </nav>
@@ -34,21 +34,21 @@
 - Một trang web có thể có nhiều menu điều hướng bất kỳ. Sử dụng nhãn (label) để xác định từng menu điều hướng.
 ```
 
-### Main content
+#### Main content
 ```html
 <main>
   <h1>Stellar launch weekend for the SpaceBear 7!</h1>
 </main>
 ```
 
-### Complementary content
+#### Complementary content
 ```html
 <aside>
   <h3>Related Articles</h3>
 </aside>
 ```
 
-### Page Regions in HTML5 Using WAI-ARIA
+#### Page Regions in HTML5 Using WAI-ARIA
 ```html
 <header role="banner"></header>
 <main role="main"></main>
@@ -68,7 +68,7 @@ bạn nên sử dụng cả phần tử HTML5 và role WAI-ARIA tương ứng.
 - Các vùng là duy nhất như <main> không cần bổ sung nhãn.
 ```
 
-### Phương pháp 1: Sử dụng aria-labelledby
+#### Phương pháp 1: Sử dụng aria-labelledby
 ```html
 <nav aria-labelledby="regionheading">
   <h3 id="regionheading">On this Page</h3>
@@ -79,7 +79,7 @@ bạn nên sử dụng cả phần tử HTML5 và role WAI-ARIA tương ứng.
 - Nếu một tiêu đề (h1,..) xuất hiện trong vùng và phản ánh cho vùng đó, hãy xem xét sử dụng nó làm nhãn:
 ```
 
-### Phương pháp 2: Sử dụng aria-label
+#### Phương pháp 2: Sử dụng aria-label
 ```html
 <nav aria-label="Main Navigation">
 </nav>
@@ -104,20 +104,20 @@ bạn nên sử dụng cả phần tử HTML5 và role WAI-ARIA tương ứng.
 
 ## 04.Content Structure
 
-### Articles
+#### Articles
 ```html
 <article>
-    <h2>Space Bear Classic</h2>
+  <h2>Space Bear Classic</h2>
 </article>
 <article>
-    <h2>Space Bear Extreme</h2>
+  <h2>Space Bear Extreme</h2>
 </article>
 ```
 ```html
 - Phần tử HTML5 <article> đại diện cho một thành phần hoàn chỉnh hoặc khép kín trong một trang web.
 ```
 
-### Sections
+#### Sections
 ```html
 <section>
   <h2>Chapter 2</h2>
@@ -127,7 +127,7 @@ bạn nên sử dụng cả phần tử HTML5 và role WAI-ARIA tương ứng.
 - Phần tử HTML5 <section> được sử dụng để nhóm nội dung.
 ```
 
-### Figures
+#### Figures
 ```html
 <figure role="group" aria-labelledby="fig-t3-capt">
   <figcaption id="fig-t3-capt">G3: SpaceBear sales volume</figcaption>
@@ -135,3 +135,59 @@ bạn nên sử dụng cả phần tử HTML5 và role WAI-ARIA tương ứng.
   <a href="#">Long Description</a>
 </figure>
 ```
+
+## 05.Menu Structure
+
+#### Identify menus
+```html
+<nav>
+  <ul></ul>
+</nav>
+```
+
+#### Indicate the current item
+##### Phương pháp 1: Using invisible text
+```html
+<li>
+  <span class="current">
+    <span class="hidden">Current Page: </span>
+    Space Bears
+  </span>
+</li>
+```
+```html
+- Cung cấp một nhãn ẩn được đọc to cho người dùng trình đọc màn hình
+- Loại bỏ ký tự liên kết (<a>) để người dùng không thể tương tác với mục hiện tại.
+```
+
+##### Phương pháp 2: Using WAI-ARIA
+```html
+<li>
+  <a href="#" class="current" aria-current="page">
+    Space Bears
+  </a>
+</li>
+```
+
+#### Indicate submenus
+```html
+<nav aria-label="Main">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Shop</a></li>
+    <li class="has-submenu">
+      <a href="#" aria-expanded="false">Iphone</a>
+      <ul>
+        <li><a href="#">Iphone 8</a></li>
+        <li><a href="#">Iphone 8 Plus</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+```
+
+```html
+- Đánh dấu WAI-ARIA aria-expand="false" tuyên bố rằng điều hướng menu con hiện bị ẩn (hidden) hoặc đã thu gọn (collapsed).
+```
+
